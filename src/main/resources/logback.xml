@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>    
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%-4relative] [%thread] [%-5level] [%logger{100}] - %msg %n</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>C:/Batcave/ProjectLogs/MFTS02.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+ 
+    <appender name="RFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>C:/Batcave/ProjectLogs/MFTS02.log</file>                
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>MFTS02.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>2</maxHistory>
+        </rollingPolicy>        
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+    <logger name="org.springframework" level="WARN">
+        <appender-ref ref="FILE" />
+    </logger>
+       
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
